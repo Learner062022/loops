@@ -15,29 +15,34 @@ namespace DylanDeSouzaWk5ExA
         public Form4()
         {
             InitializeComponent();
-        }
-
-        private void lstDivisibleNumbers_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            lstDivisibleNumbers.Items.Add("Divisible Numbers");
         }
 
         private void btnClick_Click(object sender, EventArgs e)
         {
-            lstDivisibleNumbers.Items.Add("Divisible Numbers");
-            uint uintNumber;
-            uintNumber = uint.Parse(txtPrompt.Text);
-            for (uint counter = 1; counter < (uintNumber + 1); counter++)
+            int int_num = 0;
+            try
             {
-                if (uintNumber % counter == 0)
+                int_num = int.Parse(txtNumber.Text);
+                errorProvider1.Dispose();
+            }
+            catch (Exception ex)
+            {
+                errorProvider1.SetError(txtNumber, ex.ToString());
+            }
+            finally
+            {
+                txtNumber.Clear();
+                txtNumber.Focus();
+            }
+            
+            for (uint counter = 1; counter < (int_num + 1); counter++)
+            {
+                if (int_num % counter == 0)
                 {
                     lstDivisibleNumbers.Items.Add(counter.ToString());
                 }
             }
-        }
-
-        private void txtPrompt_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
